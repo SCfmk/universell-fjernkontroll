@@ -2,8 +2,8 @@ input.onButtonPressed(Button.A, function () {
     fram()
 })
 function venstre () {
-    for (let indeks = 0; indeks <= 255; indeks++) {
-        radio.setGroup(indeks)
+    for (let indeks = 0; indeks <= radiogruppe_til - radiogruppe_fra; indeks++) {
+        radio.setGroup(indeks + radiogruppe_fra)
         radio.sendString("venstre")
         radio.sendString("Venstre")
         radio.sendString("VENSTRE")
@@ -11,12 +11,12 @@ function venstre () {
         radio.sendString("V")
     }
 }
-input.onGesture(Gesture.TiltRight, function () {
-    høyre()
+input.onGesture(Gesture.TiltLeft, function () {
+    venstre()
 })
 function stopp () {
-    for (let indeks = 0; indeks <= 255; indeks++) {
-        radio.setGroup(indeks)
+    for (let indeks = 0; indeks <= radiogruppe_til - radiogruppe_fra; indeks++) {
+        radio.setGroup(indeks + radiogruppe_fra)
         radio.sendString("stopp")
         radio.sendString("Stopp")
         radio.sendString("STOPP")
@@ -26,11 +26,13 @@ function stopp () {
         radio.sendString("stop")
         radio.sendString("Stop")
         radio.sendString("STOP")
+        radio.sendString("s")
+        radio.sendString("S")
     }
 }
 function høyre () {
-    for (let indeks = 0; indeks <= 255; indeks++) {
-        radio.setGroup(indeks)
+    for (let indeks = 0; indeks <= radiogruppe_til - radiogruppe_fra; indeks++) {
+        radio.setGroup(indeks + radiogruppe_fra)
         radio.sendString("høyre")
         radio.sendString("Høyre")
         radio.sendString("HØYRE")
@@ -48,8 +50,8 @@ input.onButtonPressed(Button.B, function () {
     bak()
 })
 function fram () {
-    for (let indeks = 0; indeks <= 255; indeks++) {
-        radio.setGroup(indeks)
+    for (let indeks = 0; indeks <= radiogruppe_til - radiogruppe_fra; indeks++) {
+        radio.setGroup(indeks + radiogruppe_fra)
         radio.sendString("fram")
         radio.sendString("Fram")
         radio.sendString("frem")
@@ -59,11 +61,29 @@ function fram () {
         radio.sendString("forover")
         radio.sendString("Forover")
         radio.sendString("FOROVER")
+        radio.sendString("kjor")
+        radio.sendString("kjør")
+        radio.sendString("Kjor")
+        radio.sendString("Kjør")
+        radio.sendString("køyr")
+        radio.sendString("Køyr")
+        radio.sendString("Koyr")
+        radio.sendString("KJØR")
+        radio.sendString("KJOR")
+        radio.sendString("KØYR")
+        radio.sendString("KJØYR")
+        radio.sendString("k")
+        radio.sendString("K")
+        radio.sendString("f")
+        radio.sendString("F")
     }
 }
+input.onGesture(Gesture.TiltRight, function () {
+    høyre()
+})
 function bak () {
-    for (let indeks = 0; indeks <= 255; indeks++) {
-        radio.setGroup(indeks)
+    for (let indeks = 0; indeks <= radiogruppe_til - radiogruppe_fra; indeks++) {
+        radio.setGroup(indeks + radiogruppe_fra)
         radio.sendString("bak")
         radio.sendString("Bak")
         radio.sendString("BAK")
@@ -82,7 +102,8 @@ function bak () {
         radio.sendString("R")
     }
 }
-input.onGesture(Gesture.TiltLeft, function () {
-    venstre()
-})
+let radiogruppe_til = 0
+let radiogruppe_fra = 0
 basic.showIcon(IconNames.Silly)
+radiogruppe_fra = 0
+radiogruppe_til = 255
